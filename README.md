@@ -1,6 +1,16 @@
 SafeMySQL
 =========
 
+This is a fork after the original project posted by `colshrapnel`.  
+This contains some personal modifications like:  
+ 	- added the option to return results as objects(enabled by default)  
+ 	- added named parameters (still testing)  
+
+<code>$db->getRow("SELECT * FROM users WHERE userid = :id AND username = :user AND password = ?s", array("id" => 1, "user" => 'ionutvmi'), 'r');  
+$db->getRow("SELECT * FROM users WHERE userid = ?i AND username = ?s", 1, 'ionutvmi');  
+$db->getRow("SELECT * FROM users WHERE userid IN(?a) AND username = :red AND email = ?s", array('red'=>'ionutvmi'), array(1,2,3), 'ionutvmi@gmail.com');  
+</code>
+
 SafeMySQL is a PHP class for safe and convenient handling of Mysql queries.
 - safe because <b>every</b> dynamic query part goes into query via <b>placeholder</b>
 - convenient because it makes application code short and meaningful, without useless repetitions, making it Extra <abbr title="Don't Repeat Yourself">DRY</abbr>
@@ -70,4 +80,3 @@ $data  = $db->query("SELECT * FROM table WHERE id IN (?a)",$array);</code>
 Same goes for such toilsome queries like INSERT and UPDATE.
 
 And, of course, we have a set of helper functions to turn type-hinted placeholders into real brilliant, making almost every call to database as simple as 1 or 2 lines of code for all the regular real life tasks.
-
